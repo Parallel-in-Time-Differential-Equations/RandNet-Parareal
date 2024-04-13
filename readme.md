@@ -25,6 +25,8 @@ The code and outputs to fully replicate the tables and figures in the paper are 
 
 Execute the bash scripts as `bash Burgers.bash 128`, where 128 is the number of cores you wish to use; see the bash script for more information. For the Diffusion-Reaction equation, only the $N=512$ case is provided, by calling `bash ReactDiff.bash 512`. For the others, the values of `dx` need to be updates inside the bash script.
 
+`Burgers_sequential.py` provides an example of how to simulate Burgers' equation with 128 space discretizations that can run on any hardware. 
+
 Our model achieves the following performance on :
 
 ### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
