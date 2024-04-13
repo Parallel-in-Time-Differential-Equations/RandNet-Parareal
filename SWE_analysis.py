@@ -97,7 +97,7 @@ fig, axs = plt.subplots(2,5, figsize=(10,4))
 for i, idx in enumerate(idxs[:5]):
     ax = axs.flatten()[i]
     # cax = ax.imshow((u[idx,...,0]), aspect=0.5, extent=(-5,5,0,5), vmin=0, vmax=0.6)
-    cax = ax.imshow((u[i,...]), aspect=2, extent=(-5,5,0,5), vmin=0, vmax=0.6, cmap='pink')
+    cax = ax.imshow((u[i,...]), aspect=2, extent=(-5,5,0,5), vmin=0, vmax=0.6, cmap='PuBuGn_r')
     ax.set_title(f'Time {t[idx]:0.2f}')
     if i%5 > 0:
         ax.get_yaxis().set_visible(False)
@@ -115,7 +115,7 @@ for i, idx in enumerate(idxs[5:]):
     i = i+5
     ax = axs.flatten()[i]
     # cax = ax.imshow((u[idx,...,0]), aspect=0.5, extent=(-5,5,0,5), vmin=0, vmax=0.1, cmap='copper')
-    cax = ax.imshow((u[i,...]), aspect=2, extent=(-5,5,0,5), vmin=0, vmax=0.1, cmap='copper')
+    cax = ax.imshow((u[i,...]), aspect=2, extent=(-5,5,0,5), vmin=0, vmax=0.1, cmap='PuBuGn_r')
     ax.set_title(f'Time {t[idx]:0.2f}')
     if i%5 > 0:
         ax.get_yaxis().set_visible(False)
