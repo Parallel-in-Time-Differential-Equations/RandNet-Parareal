@@ -1,13 +1,6 @@
 import numpy as np
 import time
-from typing import TYPE_CHECKING, Callable,TypeVar, Any
-
-
-if TYPE_CHECKING:
-    import jax
-    import jax.numpy as jnp
-    from jax import Array
-    from jax.typing import ArrayLike
+from my_typing import *
     
 try:
     import jax 
@@ -22,7 +15,6 @@ except ImportError as e:
     print(e)
     is_jax_installed = False
 
-RHS = Callable[[ArrayLike, ArrayLike], ArrayLike]
 
 class RKAbstr():
     def __init__(self, f: RHS, method: str, use_jax: bool):

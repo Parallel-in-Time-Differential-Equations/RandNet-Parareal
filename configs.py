@@ -1,7 +1,7 @@
 from math import e
 import numpy as np
 
-from systems import FHN_ODE, FHN_PDE, Rossler, Hopf, DblPend, Brusselator, Lorenz, ThomasLabyrinth, ODE
+from systems import FHN_ODE, FHN_PDE, Rossler, Hopf, DblPend, Brusselator, Lorenz, ThomasLabyrinth, ODE, Burgers
 
 class Config:
     def _fhn_ode(self, *args, **kwargs):
@@ -138,6 +138,19 @@ class Config:
         tspan = [0,T]
         return {'tspan': tspan, 'N': N, 'Ng': Ng/N, 'Nf': Nf/N, 'G': G, 'F': F}
     
+    def _burgers(self, dx, *args, **kwargs):
+        if dx == 128:
+            Ng = 4 
+            Nf = 200 
+            N = 128 
+            G = 'RK1' 
+            F = 'RK8' 
+            T = 5.9
+
+
+        tspan = [0,T]
+        return {'tspan': tspan, 'N': N, 'Ng': Ng, 'Nf': Nf, 'G': G, 'F': F}
+    
 
     def __init__(self, ode:ODE, N=None, d_x=None):
         if isinstance(ode, FHN_ODE):
@@ -159,6 +172,8 @@ class Config:
         elif isinstance(ode, FHN_PDE):
             config = self.fhn_pde(d_x)
             # ode.name += f'_{d_x}'
+        elif isinstance(ode, Burgers):
+            config = self._burgers(ode.d_x)
         else:
             raise Exception('No config for input ODE')
         

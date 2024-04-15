@@ -1,7 +1,9 @@
 import numpy as np
 import time
 from scipy.integrate import solve_ivp
-from typing import Callable
+
+from my_typing import *
+
 
 try:
     import jax 
@@ -19,7 +21,7 @@ except ImportError as e:
 from RK import RK
 
 def calc_time(f: Callable):
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs) :
         s_time = time.time()
         ret = f(*args, **kwargs)
         el_time = time.time() - s_time
@@ -49,7 +51,7 @@ class SolverAbstr:
     
 
     @calc_time
-    def run_F_full_timed(self, t0: float, t1: float, u0: np.ndarray, *args, **kwargs):
+    def run_F_full_timed(self, t0: float, t1: float, u0: np.ndarray, *args, **kwargs) -> np.ndarray:
         return self.run_F_full(t0, t1, u0, *args, **kwargs)
     
 
