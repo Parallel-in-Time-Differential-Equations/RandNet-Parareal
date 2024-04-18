@@ -776,12 +776,15 @@ class Parareal():
             if k not in self.runs:
                 raise Exception('Unknown model', k)
             mdl = self.runs[k]
+            N = self.N
+            tot_G_runs = (N - np.array(mdl['conv_int'])).sum() + N
+
             if F_t is not None:
                 tot_spd = F_t * mdl['k'] + mdl['timings']['mdl_tot_t']
                 speedup = f'{fine_t/tot_spd:.2f}'
             else:
                 speedup = f'{fine_t/mdl["timings"]["runtime"]:.2f}'
-            temp = [mdl_map.get(v,v), mdl['k'], str_format(mdl['timings']['G_time']/mdl['k']), str_format(mdl['timings']['F_time']/mdl['k']), 
+            temp = [mdl_map.get(v,v), mdl['k'], str_format(mdl['timings']['G_time']/tot_G_runs*N), str_format(mdl['timings']['F_time']/mdl['k']), 
                     str_format(mdl['timings']['mdl_tot_t']), str_format(mdl['timings']['runtime']), 
                     speedup]
             out.append(temp)

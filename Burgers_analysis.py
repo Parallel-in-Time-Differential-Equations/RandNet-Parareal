@@ -38,7 +38,7 @@ for dx in [128, 1128]:
     
     solver.runs['Parareal'] = get(os.path.join('BurgersScal', f'{"BurgersScal"}_{dx}_{N}_{"para"}'))
     solver.runs['NN-GParareal'] = get(os.path.join('BurgersScal', f'{"BurgersScal"}_{dx}_{N}_{"nngp"}'))
-    solver.runs['ELM'] = get(os.path.join('BurgersScal', f'{"BurgersScal"}_{dx}_{N}_{"elm"}'))
+    solver.runs['RParareal'] = get(os.path.join('BurgersScal', f'{"BurgersScal"}_{dx}_{N}_{"elm"}'))
 
     for k in list(solver.runs.keys()):
         if solver.runs[k] is None:

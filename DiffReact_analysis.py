@@ -19,6 +19,7 @@ def store_pickle(obj, name):
 from parareal import Parareal
 
 def store_fig(fig, name):
+    fig.savefig(os.path.join('img', name), bbox_inches='tight')
     fig.savefig(os.path.join('img', name+'.pdf'), bbox_inches='tight')
 
 
@@ -72,7 +73,7 @@ for dx in [19, 28, 41, 77, 113, 164, 235]:
     
     solver.runs['Parareal'] = get(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{"para"}'))
     solver.runs['NN-GParareal'] = get(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{"nngp"}'))
-    solver.runs['ELM'] = get(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{"elm"}'))
+    solver.runs['RParareal'] = get(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{"elm"}'))
 
     for k in list(solver.runs.keys()):
         if solver.runs[k] is None:
@@ -94,14 +95,10 @@ def tool_append(d, k, val):
     l.append(val)
     d[k] = l
     
-def tr_key(key):
-    mdl, typ = key.split('_')
-    mdl_d = {'gp':'GPara','para':'Para','nngp':'NN-GPara', 'elm':'ELMPara'}
-    typ_d = {'exp':'Theoretical', 'act':'Actual','exprough':'Theoretical approx', 'ub': 'Upper bound'}
-    return f'{mdl_d[mdl]} {typ_d[typ]}'
     
 n_restarts = 1
-n_cores_d = {32:47, 64:47*2, 128:47*3, 256:47*6, 512:47*11}
+# n_cores_d = {32:47, 64:47*2, 128:47*3, 256:47*6, 512:47*11}
+n_cores_d = {32:32, 64:64, 128:128, 256:256, 512:512}
 store = {}
 store_time = {}
 dxs = [19, 28, 41, 77, 113, 164, 235]
@@ -115,7 +112,8 @@ for dx in dxs:
         N = 256
     else:
         N = 512
-    Ns.append((int(N//47)+1)*47)
+    # Ns.append((int(N//47)+1)*47)
+    Ns.append(N)
     for mdl in ['para', 'elm', 'nngp']:
         try:
             solver = read_pickle(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{mdl}'))
@@ -136,7 +134,7 @@ fontsize = 15
 fs_ticks = 13
 ds = np.array([2*d**2 for d in dxs])
 c = {'elm':'red','para':'gray','nngp':'blue', 'fine':'black'}    
-legend_tags = {'elm':'ELM', 'para':'Parareal', 'nngp':'NN-GParareal', 'fine':'Fine solver'}
+legend_tags = {'elm':'RParareal', 'para':'Parareal', 'nngp':'NN-GParareal', 'fine':'Fine solver'}
 markers = {'elm':'2', 'para':'x', 'nngp':'+', 'fine':'_'}
 fig, axs = plt.subplots(1,2,figsize = [6.4*2, 4.8])
 ax=axs[0]
@@ -210,8 +208,8 @@ idxs = [0, 20, 40, 80, 150, 225, 300,375,450, 512]
 
 # u_bis = np.zeros((513, 235, 235, 2))
 # for i in range(513):
-#     u_bis[i,...,0] = u[i, :235**2].reshape(235, 235)
-#     u_bis[i,...,1] = u[i, 235**2:].reshape(235, 235)
+#     u_bis[i,...,0] = u[i, :235**2].reshape(235, 235) # the activator
+#     u_bis[i,...,1] = u[i, 235**2:].reshape(235, 235) # the inhibitor
 
 
 # u = u_bis[idxs,...,0]

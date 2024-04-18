@@ -19,6 +19,7 @@ def store_pickle(obj, name):
 from parareal import Parareal
 
 def store_fig(fig, name):
+    fig.savefig(os.path.join('img', name), bbox_inches='tight')
     fig.savefig(os.path.join('img', name+'.pdf'), bbox_inches='tight')
 
 
