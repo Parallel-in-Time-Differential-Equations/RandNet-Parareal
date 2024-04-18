@@ -21,9 +21,15 @@ pip install -r requirements.txt
 ## Results
 
 Together with Viscous Burgers' equation, and the Diffusion-Reaction equation, we solve the Shallow Water equations. Derived from the compressible Navier-Stokes equations, the SWEs are a system of hyperbolic PDEs exhibiting several behaviors of real-world significance that are known to challenge emulators, such as sharp shock formation dynamics, sensitive dependence on initial conditions, diverse boundary conditions, and spatial heterogeneity. Example applications include the simulation of tsunamis or general flooding events.
+<p align="center">
+  <img  src="img/swe_system_evolution.png" title="Shallow Water Equations evolution.png">
+  <div align="center"> 
+  
+  Numerical solution of the shallow water equation over $(x,y) \in [-5,5]\times[0,5]$ with $N_x=264$ and $N_y=133$ for a range of system times $t$. Only the water depth $h$ (blue) is plotted.
+  </div>
+</p>
 
-![Shallow Water Equations evolution.png](img/swe_system_evolution.png)
-Numerical solution of the shallow water equation over $(x,y) \in [-5,5]\times[0,5]$ with $N_x=264$ and $N_y=133$ for a range of system times $t$. Only the water depth $h$ (blue) is plotted.
+
 
 The following table portrays the speed-up achieved by RParareal. Note that NN-GParareal failed to converge in all the trials.
 <div align="center">
