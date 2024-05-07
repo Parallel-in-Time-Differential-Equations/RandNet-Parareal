@@ -58,6 +58,7 @@ def get(path):
         # print(e)
         return None
 fine_time = {}
+serials = {}
 for dx in [19, 28, 41, 77, 113, 164, 235]:
     if dx == 19:
         N = 64
@@ -84,6 +85,7 @@ for dx in [19, 28, 41, 77, 113, 164, 235]:
     print()
     print()
     Parareal.print_speedup(solver, md=False, fine_t = exp_serial_c, mdl_title=f'DiffReact $d={dx**2*2}$', readable=True)
+    serials[dx] = exp_serial_c
 
 
 
@@ -119,7 +121,8 @@ for dx in dxs:
             solver = read_pickle(os.path.join('DiffReactScal', f'{"DiffReactScal"}_{dx}_{N}_{mdl}'))
 
             run = solver.runs[list(solver.runs.keys())[0]]
-            act = calc_speedup(run, N=N)
+            # act = calc_speedup(run, N=N)
+            act = serials[dx]/run['timings']['runtime']
             tool_append(store, mdl+'_act', act)
             tool_append(store_time, mdl+'_act', run['timings']['runtime'])
         except Exception as e:
@@ -134,7 +137,7 @@ fontsize = 15
 fs_ticks = 13
 ds = np.array([2*d**2 for d in dxs])
 c = {'elm':'red','para':'gray','nngp':'blue', 'fine':'black'}    
-legend_tags = {'elm':'RParareal', 'para':'Parareal', 'nngp':'NN-GParareal', 'fine':'Fine solver'}
+legend_tags = {'elm':'RWParareal', 'para':'Parareal', 'nngp':'NN-GParareal', 'fine':'Fine solver'}
 markers = {'elm':'2', 'para':'x', 'nngp':'+', 'fine':'_'}
 fig, axs = plt.subplots(1,2,figsize = [6.4*2, 4.8])
 ax=axs[0]

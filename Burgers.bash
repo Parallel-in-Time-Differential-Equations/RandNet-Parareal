@@ -23,7 +23,7 @@ else
 fi
 echo > scal_out_file_"$1".txt
 file=$(date +%s)
-cp "/home/maths/strkss/massi/elm/run_scal.py" "/home/maths/strkss/massi/elm/run_scal_"$file".py"
+cp "/home/maths/strkss/massi/elm/Burgers.py" "/home/maths/strkss/massi/elm/Burgers_"$file".py"
 for mdl in "elm" "para" "nngp"; do for dx in 128 1128; do
 	sbatch <<EOT
 #!/bin/bash
@@ -42,8 +42,8 @@ cd "/home/maths/strkss/massi/elm"
 source venv/bin/activate
 
 # Multiprocess application
-srun python -u -m mpi4py.futures run_scal_"$file".py $1 $mdl $dx
-#srun python -u -m mpi4py.futures run_scal_"$file".py $1 $mdl
+srun python -u -m mpi4py.futures Burgers_"$file".py $1 $mdl $dx
+#srun python -u -m mpi4py.futures Burgers_"$file".py $1 $mdl
 
 exit 0
 
