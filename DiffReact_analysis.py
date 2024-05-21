@@ -137,7 +137,7 @@ fontsize = 15
 fs_ticks = 13
 ds = np.array([2*d**2 for d in dxs])
 c = {'elm':'red','para':'gray','nngp':'blue', 'fine':'black'}    
-legend_tags = {'elm':'RWParareal', 'para':'Parareal', 'nngp':'NN-GParareal', 'fine':'Fine solver'}
+legend_tags = {'elm':'RandNet-Parareal', 'para':'Parareal', 'nngp':'nnGParareal', 'fine':'Fine solver'}
 markers = {'elm':'2', 'para':'x', 'nngp':'+', 'fine':'_'}
 fig, axs = plt.subplots(1,2,figsize = [6.4*2, 4.8])
 ax=axs[0]
@@ -193,7 +193,7 @@ ax2.tick_params(axis='both', labelsize=fs_ticks)
 ax2.set_xlabel(r"Number of processors $N$", fontsize=fontsize)
 ax.legend(prop={'size':fontsize}, loc='upper left', frameon=False, fontsize=fontsize)
 ax.set_xlabel(r'$\log_{10}(d)$',fontsize=fontsize)
-ax.set_ylabel('Runtime (hours, $\log$)',fontsize=fontsize)
+ax.set_ylabel(r'Runtime (hours, $\log_{10}$)',fontsize=fontsize)
 fig.tight_layout()
 store_fig(fig, 'diffreact_speedup_w_time')
 

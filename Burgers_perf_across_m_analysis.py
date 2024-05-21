@@ -15,11 +15,11 @@ df = pd.DataFrame.from_records(l)
 df.columns = ['seed', 'res_size', 'm', 'k', 't']
 
 def get_bin_lab(bins, gp):
-    out = [r'$K_{RW} '+fr' < {bins[0]}$']
+    out = [r'$K_{\rm RandNet} '+fr' < {bins[0]}$']
     for i in range(1, len(bins)):
         # out.append(rf'${bins[i-1]} \leq' + ' K_{NN} ' + rf'< {bins[i]}$')
-        out.append(r'$K_{RW} '+rf'={bins[i-1]}$' )
-    out.append(r'$K_{RW} \geq K_{NN\text{-}GPara}' + rf' = {bins[-1]}$')
+        out.append(r'$K_{\rm RandNet} '+rf'={bins[i-1]}$' )
+    out.append(r'$K_{\rm RandNet} \geq K_{nnGPara}' + rf' = {bins[-1]}$')
     return out
 
 def build_bins(df, bins, bins_lab):
@@ -51,12 +51,12 @@ def do(df, ax, bins_k, show_legend=True, is_res_size = False):
     # ax.fill_between(np.arange(len(temp.count_filt)), [0]*len(temp.count_filt), temp.count_filt, hatch='/', alpha=0.0)
     ax.legend(loc='center left',bbox_to_anchor=(1.0, 0.5))
     ax.get_legend().set_visible(show_legend)
-    ax.set_xlabel('m')
+    ax.set_xlabel(r'$m_{\rm RandNet}$')
     ax.set_ylabel('Proportion')
     # ax.set_title(f'$t_N={5.9}$')
     if is_res_size:
         ax.set_xticks(np.arange(0,49,3),(np.arange(0,49,3)*10+20).astype(int))
-        ax.set_xlabel('M')
+        ax.set_xlabel('$M$, number of neurons')
 
 fig, axs = plt.subplots(1,2,figsize=(10,4))
 df.columns = ['seed', 'res_size', 'm', 'k', 't']
