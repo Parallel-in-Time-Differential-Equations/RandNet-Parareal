@@ -1,6 +1,6 @@
 # RandNet-Parareal: a time-parallel PDE solver using Random Neural Networks
 
-This repository is the official implementation of [RandNet-Parareal: a time-parallel PDE solver using Random Neural Networks](). 
+This repository is the official implementation of [RandNet-Parareal: a time-parallel PDE solver using Random Neural Networks](). Authors: Guglielmo Gattiglio, Lyudmila Grigoryeva, and Massimiliano Tamborrino. 
 
 >Parallel-in-time (PinT) techniques have been proposed to solve systems of time-dependent differential equations by parallelizing the temporal domain. Among them, Parareal computes the solution sequentially using an inaccurate (fast) solver, and then ``corrects'' it using an accurate (slow) integrator that runs in  parallel across temporal subintervals. This work introduces RandNet-Parareal, a novel method to learn the discrepancy between the coarse and fine solutions using random neural networks (RandNets). RandNet-Parareal achieves speed gains up to x125 and x22 compared to the fine solver run serially and Parareal, respectively. Beyond theoretical guarantees of RandNets as universal approximators, these models are quick to train, allowing the PinT solution of partial differential equations on a spatial mesh of up to $10^5$ points with minimal overhead, dramatically increasing the scalability of existing PinT approaches. RandNet-Parareal's numerical performance is illustrated on systems of real-world significance, such as the viscous Burgers' equation, the Diffusion-Reaction equation, and the shallow water equation.
 <p align="center">
