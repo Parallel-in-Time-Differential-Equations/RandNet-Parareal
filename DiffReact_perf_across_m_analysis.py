@@ -15,11 +15,11 @@ df = pd.DataFrame.from_records(l)
 df.columns = ['seed', 'res_size', 'm', 'k', 't']
 
 def get_bin_lab(bins, gp):
-    out = [r'$K_{\rm RandNet} '+fr' < {bins[0]}$']
+    out = [r'$K_{\rm RandNet\text{-}Para} '+fr' < {bins[0]}$']
     for i in range(1, len(bins)):
         # out.append(rf'${bins[i-1]} \leq' + ' K_{NN} ' + rf'< {bins[i]}$')
-        out.append(r'$K_{\rm RandNet} '+rf'={bins[i-1]}$' )
-    out.append(r'$K_{\rm RandNet} \geq K_{nnGPara}' + rf' = {bins[-1]}$')
+        out.append(r'$K_{\rm RandNet\text{-}Para} '+rf'={bins[i-1]}$' )
+    out.append(r'$K_{\rm RandNet\text{-}Para} \geq K_{nnGPara}' + rf' = {bins[-1]}$')
     return out
 
 def build_bins(df, bins, bins_lab):
